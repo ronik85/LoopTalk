@@ -1,3 +1,5 @@
+import moment from "moment";
+
 const transformImage = (url = "", width = 100) => {
     const newUrl = url?.replace("upload/", `upload/dpr_auto/w_${width}/`);
     return newUrl;
@@ -20,4 +22,19 @@ const fileFormat = (url = "") => {
     return "file";
 };
 
-export { transformImage, fileFormat };
+const getLast7Days = () => {
+    const currentDate = moment();
+
+    const last7Days = [];
+
+    for (let i = 0; i < 7; i++) {
+        const dayDate = currentDate.clone().subtract(i, "days");
+        const dayName = dayDate.format("dddd");
+
+        last7Days.unshift(dayName);
+    }
+
+    return last7Days;
+};
+
+export { transformImage, fileFormat, getLast7Days };

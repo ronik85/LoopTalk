@@ -55,11 +55,7 @@ const adminTabs = [
 
 const Sidebar = () => {
     const location = useLocation();
-    console.log(location);
-    // const dispatch = useDispatch();
-
     const logoutHandler = () => {
-        // dispatch(adminLogout());
         console.log("logout");
     };
 
@@ -101,6 +97,7 @@ const Sidebar = () => {
     );
 };
 const isAdmin = true
+
 const AdminLayout = ({ children }) => {
     const [isMobile, setIsMobile] = useState(false);
     const handleMobile = () => {
