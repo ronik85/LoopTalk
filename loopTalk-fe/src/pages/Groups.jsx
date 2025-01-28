@@ -25,7 +25,7 @@ import { bgGradient, matBlack } from "../constants/color";
 import UserItem from "../components/shared/UserItem";
 import Grid from "@mui/material/Grid2";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { samplechats, sampleUsers } from "../constants/sampleData";
+import { samplechats, sampleUsers } from "../constants/SampleData";
 import AvatarCard from "../components/shared/AvatarCard";
 
 const ConfirmDeleteDialog = lazy(() =>

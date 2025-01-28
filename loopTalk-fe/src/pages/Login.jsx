@@ -12,8 +12,8 @@ import {
 } from "@mui/material";
 import React, { useState } from "react";
 import { VisuallyHiddenInput } from "../components/styles/StyledComponent";
-import { usernameValidator } from "../utils/validators";
 import { bgGradient } from "../constants/color";
+import { usernameValidator } from "../utils/validators";
 
 const Login = () => {
     const [isLogin, setIsLogin] = useState(true);
