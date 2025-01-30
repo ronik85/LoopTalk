@@ -1,16 +1,20 @@
 import express from 'express'
-// import userRouter from './routes/user.routes.js'
+import { connectDB } from './utils/features.js'
+import dotenv from 'dotenv'
+
+dotenv.config({
+    path: './.env'
+})
+const mongoURI = process.env.MONGO_URI
+const PORT = process.env.PORT || 3000
+connectDB(mongoURI)
+
 const app = express()
 
 
-app.get('/hello/asas', (req, res) => {
-    res.send('Matched: /hello/asas');
-});
+import userRouter from './routes/user.routes.js'
+app.use('/new', userRouter)
 
-app.get('/hello', (req, res) => {
-    res.send('Matched: /hello');
-});
-
-app.listen(3000, () => {
-    console.log('Server is running on http://localhost:3000')
+app.listen(PORT, () => {
+    console.log(`Server is running on ${PORT}`)
 })
