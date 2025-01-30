@@ -1,7 +1,9 @@
 import { Router } from "express";
 import { newUser } from "../controllers/user.controller.js";
+import { singleAvatar } from '../middlewares/multer.js'
 
-const route = Router()
-route.post('/user', newUser)
+const router = Router()
 
-export default route
+router.post('/user', singleAvatar, newUser)
+
+export default router
