@@ -15,7 +15,6 @@ const newUser = async (req, res) => {
         avatar
     })
     res.send("helllo")
-
 }
-
+ 
 export { newUser }
