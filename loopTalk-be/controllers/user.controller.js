@@ -1,7 +1,11 @@
+import { LOOPTALK_TOKEN } from '../constants/config.js';
 import { TryCatch } from '../middlewares/error.js';
 import { User } from '../models/user.model.js'
 import { sendToken } from '../utils/features.js';
 import { ErrorHandler } from '../utils/utility.js';
+import {
+    cookieOptions,
+} from "../utils/features.js";
 
 
 // Create a new user and save it to the database and save token in cookie
@@ -48,4 +52,14 @@ const getMyProfile = async (req, res, next) => {
     });
 }
 
-export { newUser, login, getMyProfile }
+const logout = TryCatch(async (req, res) => {
+    return res
+        .status(200)
+        .cookie(LOOPTALK_TOKEN, "", { ...cookieOptions, maxAge: 0 })
+        .json({
+            success: true,
+            message: "Logged out successfully",
+        });
+});
+
+export { newUser, login, getMyProfile, logout }
