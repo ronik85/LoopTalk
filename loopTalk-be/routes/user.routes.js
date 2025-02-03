@@ -1,10 +1,15 @@
 import { Router } from "express";
-import { login, newUser } from "../controllers/user.controller.js";
+import { getMyProfile, login, newUser } from "../controllers/user.controller.js";
 import { singleAvatar } from '../middlewares/multer.js'
+import { isAuthenticated } from "../middlewares/auth.js";
 
 const router = Router()
 
-router.post('/user', singleAvatar, newUser)
+router.post('/new', singleAvatar, newUser)
 router.post('/login', login)
 
+
+// After here user must be logged in to access the routes
+router.use(isAuthenticated);
+router.get("/me", getMyProfile);
 export default router
