@@ -1,5 +1,5 @@
 import mongoose, { Schema, model, Types } from "mongoose";
-import { hash } from "bcrypt";
+import { hash, compare } from "bcrypt";
 
 const userSchema = new Schema({
     name: {
@@ -34,5 +34,10 @@ userSchema.pre("save", async function (next) {
     this.password = await hash(this.password, 10);
 });
 
+userSchema.methods.isPasswordValid = async function (inputPassword) {
+    const hashedPassword = this.password
+    const isPasswordValid = await compare(inputPassword, hashedPassword)
+    return isPasswordValid
+}
 
 export const User = mongoose.models.user || model("User", userSchema);
