@@ -13,4 +13,7 @@ router.post('/login', login)
 router.use(isAuthenticated);
 router.get("/me", getMyProfile);
 router.get("/logout", logout);
+router.get("/search", logout);
+
+
 export default router

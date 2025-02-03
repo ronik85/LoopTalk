@@ -1,7 +1,8 @@
-import express, { json } from 'express'
-import { connectDB } from './utils/features.js'
-import dotenv from 'dotenv'
 import cookieParser from 'cookie-parser'
+import dotenv from 'dotenv'
+import express from 'express'
+import { errorMiddleware } from './middlewares/error.js'
+import { connectDB } from './utils/features.js'
 
 dotenv.config({
     path: './.env'
@@ -17,12 +18,14 @@ app.use(cookieParser())
 
 
 import userRouter from './routes/user.routes.js'
-import { errorMiddleware } from './middlewares/error.js'
+import chatRouter from './routes/chats.routes.js'
+import { createUser } from './seeders/user.js'
 
 app.use('/api/v1/user', userRouter)
+app.use('/api/v1/chat', chatRouter)
 
 app.use(errorMiddleware)
-
+// createUser(10)
 app.listen(PORT, () => {
     console.log(`Server is running on ${PORT}`)
 })

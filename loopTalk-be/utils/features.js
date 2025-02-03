@@ -1,5 +1,5 @@
-import mongoose from "mongoose"
 import jwt from "jsonwebtoken";
+import mongoose from "mongoose";
 
 const cookieOptions = {
     maxAge: 15 * 24 * 60 * 60 * 1000,
@@ -24,4 +24,9 @@ const sendToken = (res, user, code, message) => {
     });
 };
 
-export { connectDB, sendToken, cookieOptions }
+const emitEvent = (req, event, users, data) => {
+    // const io = req.app.get("io");
+    // const usersSocket = getSockets(users);
+    // io.to(usersSocket).emit(event, data);
+};
+export { connectDB, cookieOptions, emitEvent, sendToken };
