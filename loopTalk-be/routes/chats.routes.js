@@ -9,4 +9,4 @@ router.use(isAuthenticated);
 router.post("/new", newGroupChat);
 router.post("/my", getMyChats);
 
-export default router
+export default router 
